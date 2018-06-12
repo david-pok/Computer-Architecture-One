@@ -4,6 +4,7 @@
 const LDI = 0b10011001;
 const PRN  = 0b01000011; // Print numeric register
 const HLT = 0b00000001;
+const MUL = 0b10101010;
 /**
  * Class for simulating a simple Computer (CPU & memory)
  */
@@ -56,7 +57,8 @@ class CPU {
      */
     alu(op, regA, regB) {
         switch (op) {
-            case 'MUL':
+            case MUL:
+             this.reg[regA] *= this.reg[regB]
                 // !!! IMPLEMENT ME
                 break;
         }
@@ -93,6 +95,10 @@ class CPU {
                 // Set the value in a register
                 this.reg[operandA] = operandB;
                 //this.PC += 3; // Next instruction
+                break;
+
+                case MUL:
+                this.alu(MUL, operandA, operandB)
                 break;
 
                case PRN: 
