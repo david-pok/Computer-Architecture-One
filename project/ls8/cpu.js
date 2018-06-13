@@ -2,7 +2,7 @@
  * LS-8 v2.0 emulator skeleton code
  */
 const LDI = 0b10011001;
-const PRN  = 0b01000011; // Print numeric register
+const PRN = 0b01000011; // Print numeric register
 const HLT = 0b00000001;
 const MUL = 0b10101010;
 /**
