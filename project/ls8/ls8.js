@@ -1,11 +1,13 @@
-// const RAM = require('./ram');
-// const CPU = require('./cpu');
+// // const RAM = require('./ram');
+// // const CPU = require('./cpu');
 
-// /**
-//  * Load an LS8 program into memory
-//  *
-//  * TODO: load this from a file on disk instead of having it hardcoded
-//  */
+// // /**
+// //  * Load an LS8 program into memory
+// //  *
+// //  * TODO: load this from a file on disk instead of having it hardcoded
+// //  */
+
+// //START
 
 const RAM = require('./ram');
 const CPU = require('./cpu');
@@ -19,11 +21,19 @@ const fileData = fs.readFileSync(program, "utf8");
 const lines = fileData.trim().split(/[\r\n]+/g);
 // console.log(lines);
 let p = []
+// for (let i = 1; i < lines.length; i++) {
+   
+//    p.push(lines[i].split(" ")[0]);
+
+// }
 for (let i = 1; i < lines.length; i++) {
-
-   p.push(lines[i].split(" ")[0]);
-
-}
+    let instruction = parseInt(lines[i], 2)
+    if (isNaN(instruction)) {
+      continue
+    } else {
+      p.push(instruction);
+    }
+  }
 // console.log(p);
 
 function loadMemory() {
@@ -56,7 +66,8 @@ function loadMemory() {
 
     // Load the program into the CPU's memory a byte at a time
     for (let i = 0; i < p.length; i++) {
-        cpu.poke(i, parseInt(p[i], 2));
+
+        cpu.poke(i, p[i]);
     }
 }
 
@@ -73,6 +84,7 @@ loadMemory(cpu);
 
 cpu.startClock();
 
+//END
 
 // const RAM = require('./ram');
 // const CPU = require('./cpu');
